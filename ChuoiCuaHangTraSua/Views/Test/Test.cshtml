@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@model List<ChuoiCuaHangTraSua.Models.Model.TestModel>
+<table class="table  table-responsive" width="100">
+    <thead>
+        <tr style="font-size:13px;">
+
+           
+            <th width="11%">Ngày bắt đầu</th>
+            <th width="11%">Ngày kết thúc</th>
+            <th width="11%">Ngày còn</th>
+            
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td width="10%" class="table-center">@String.Format("{0:d/M/yyyy}", item.NgayBD)</td>
+                <td width="10%" class="table-center">@String.Format("{0:d/M/yyyy}", item.NgayKT)</td>
+                <td width="6%" class="table-center">@item.ChonNgay</td>
+
+
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

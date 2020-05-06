@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@model List<ChuoiCuaHangTraSua.Models.Model.KhachHangModel>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">DANH SÁCH HÓA ĐƠN BÁN</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="5%">STT</th>
+                                    <th width="15%">Họ tên</th>
+                                    <th width="15%">Tên đăng nhập</th>
+                                    <th width="10%">Điện thoại</th>
+                                    <th width="13%">Địa chỉ</th>
+                                    
+                                    <th width="11%">Chức năng</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="5%" class="table-center">@item.STT</td>
+                                        <td width="15%" class="admin-spc-tensp"><span>@item.HoTen</span> </td>
+                                        <td width="15%" class="table-center">@item.TenDangNhap</td>
+                                        <td width="10%">@item.SDT</td>
+                                        <td width="9%" class="table-center">@item.DiaChi</td>
+                                        
+                                        <td width="11%" class="chucnang table-center">
+
+                                            <a href="/KhachHangAdmin/DeleteKhachHang?userid=@item.Id" class="btn btn-danger" id="" onclick="alert('Bạn có chắc muốn xóa không?')">Xóa</a> <br />
+
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div><!-- .animated -->
+</div>
+
+
+
+

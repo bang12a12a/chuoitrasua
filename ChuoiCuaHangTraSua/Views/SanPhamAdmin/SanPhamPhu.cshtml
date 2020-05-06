@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "SanPhamPhu";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@model List<ChuoiCuaHangTraSua.Models.Model.SanPhamModel>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">DANH SÁCH SẢN PHẨM</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="5%">STT</th>
+                                    <th width="15%">Tên Sản Phẩm</th>
+                                    <th width="10%">Ảnh</th>
+                                    <th width="10%">Tên Loại</th>
+                                    <th width="13%">Giá Bán</th>
+                                    <th width="15%">Giá Khuyến Mãi</th>
+                                    <th width="11%">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="5%" class="table-center">@item.STT</td>
+                                        <td width="15%" class="admin-spc-tensp"><span>@item.Ten</span> </td>
+                                        <td width="10%" class="table-center"><img src="@Url.Content("~/Content/images/"+item.Anh)" /></td>
+                                        <td width="15%">@item.TenLoai</td>
+                                        <td width="9%" class="table-center">@String.Format("{0:0,0}", @item.GiaBan)đ</td>
+                                        <td width="15%" class="table-center">@String.Format("{0:0,0}", @item.KhuyenMai)đ</td>
+                                        <td width="11%" class="chucnang table-center">
+                                            <a href="/SanPhamAdmin/EditProductChinh?productid=@item.Id" class="btn btn-primary">Sửa</a> <br /> <br />
+                                            <a href="/SanPhamAdmin/DeleteProductChinh?productid=@item.Id" class="btn btn-danger" id="" onclick="alert('Bạn có chắc muốn xóa không?')">Xóa</a> <br />
+                                           
+                                        </td>
+
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div><!-- .animated -->
+</div>
+
+
+
+

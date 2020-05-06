@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_NguoiDung.cshtml";
+}
+@model List<ChuoiCuaHangTraSua.Models.Model.GioHangModel>
+<div class="container">
+    <table class="table  table-responsive">
+        <thead width="100%">
+            <tr>
+
+                <th width="15%"> TÊN SẢN PHẨM</th>
+                <th width="10%"> HÌNH ẢNH</th>
+                <th width="10%">  SỐ LƯỢNG</th>
+                <th width="10%"> ĐƠN GIÁ</th>
+                <th width="15%"> THÀNH TIỀN</th>
+                <th width="10%"> MÔ TẢ</th>
+                <th width="20%">CHỨC NĂNG</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td width="15%"><span class="cl-cart-tensp"> @item.TenSanPham</span></td>
+                    <td width="10%">  <img src="@Url.Content("~/Content/images/"+@item.Anh)" alt="" width="100" height="100" /></td>
+
+                    <td width="10%" class="cl-center">
+                        <button class="btn-cl-tru" onclick="UpdateTru(@item.MaSanPham)">-</button>
+                        <input type="text" name="@item.MaSanPham" value="@item.SoLuong" id="SoLuong_@item.MaSanPham" disabled class="cl-input-soluong" />
+                        <button class="btn-cl-tru" onclick="UpdateCong(@item.MaSanPham)">+</button>
+                    </td>
+
+
+                    <td width="10%" class="cl-center"> @String.Format("{0:0,0}", @item.GiaBan)đ</td>
+
+                    <td width="10%" class="cl-center">@String.Format("{0:0,0}", @item.ThanhTien)đ</td>
+                    <td width="25%">@item.MoTa</td>
+
+                    <td width="20%">
+                        <button class="btn btn-danger" onclick="DeleteCart(@item.MaSanPham)">Xóa</button>
+
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="cl-center"><span>Tổng Tiền</span></td>
+            <td class="cl-center">
+                <span>@String.Format("{0:0,0}", @Model.Sum(x => x.ThanhTien))đ</span>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+
+    </table>
+    <div class="gh-bottom">
+        <a href="/SanPham/Index" class="btn btn-success">Tiếp tục mua hàng</a>
+        <a href="/Bill/CreateBill?tongtien=@Model.Sum(x=>x.ThanhTien)" class="btn btn-primary">Thanh toán</a>
+    </div>
+</div>
+
+
+<script>
+    function UpdateTru(id) {
+        var soluong = Number($('#SoLuong_' + id).val());
+        if (soluong <= 1) {
+            soluong = 1;
+        }
+        else {
+            soluong = soluong - 1;
+        }
+        window.location.href = '/Cart/UpdateCart?productid=' + id + '&soluong=' + soluong;
+
+    }
+    function UpdateCong(id) {
+        var soluong = Number($('#SoLuong_' + id).val());
+
+        soluong = soluong + 1;
+
+        window.location.href = '/Cart/UpdateCart?productid=' + id + '&soluong=' + soluong;
+
+    }
+    function DeleteCart(id) {
+        window.location.href = '/Cart/DeleteCart?productid=' + id ;
+
+    }
+</script>

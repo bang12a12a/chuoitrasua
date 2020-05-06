@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+@using PagedList.Mvc;
+@model PagedList.PagedList<ChuoiCuaHangTraSua.Models.Model.KhuyenMaiModel>
+<div class="main-admin-product">
+    <div class="main-top row">
+        <div class="col-md-10"><span>KHUYẾN MÃI</span></div>
+        <div class="col-md-2 mt-right">
+            <a href="/KhuyenMaiAdmin/CreateKhuyenMai" class="btn btn-primary">Thêm</a>
+        </div>
+
+    </div>
+    <hr>
+    <div class="main-center">
+        <table class="table  table-responsive" width="100">
+            <thead>
+                <tr style="font-size:13px;">
+
+                    <th width="5%">STT</th>
+                    <th width="20%">Tên</th>
+                    <th width="15%">Loại khuyến mãi</th>
+                    <th width="11%">Ngày bắt đầu</th>
+                    <th width="11%">Ngày kết thúc</th>
+                    <th width="9%">Phần trăm</th>
+                    <th width="15%">Status</th>
+
+                    <th width="11%">Chức năng</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td width="5%" class="table-center">@item.STT</td>
+                        <td width="20%" class="admin-spc-tensp"><span>@item.Ten</span> </td>
+                        <td width="15%" class="table-center">@item.TenLoaiKhuyenMai</td>
+                        <td width="10%" class="table-center">@String.Format("{0:M/d/yyyy}", item.NgayBatDau)</td>
+                        <td width="10%" class="table-center">@String.Format("{0:M/d/yyyy}", item.NgayKetThuc)</td>
+                        <td width="6%" class="table-center">@item.PhanTram %</td>
+                       
+                        <td width="15%" class="table-center">
+                            @if (item.Status == 0)
+                            {
+                                <span class="btn btn-danger" href="">Đã dừng</span>
+                            }
+                            else
+                            {
+                                <span class="btn btn-primary"href="">Đang áp dụng</span>
+                            }
+                        </td>
+                        <td width="11%" class="chucnang table-center">
+                            @if (item.Status == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                <a href="/KhuyenMaiAdmin/UpdateKhuyenMai?makhuyenmai=@item.Id" class="btn btn-danger" id="" onclick="alert('Bạn có chắc muốn dừng không?')">Dừng</a> <br />
+                            }
+
+                           
+                        </td>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="main-bottom row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            @Html.PagedListPager(Model, page => Url.Action("SanPhamChinh", "SanPhamAdmin", new { page = page, sanphamchinh = ViewBag.SanPhamChinh }))
+        </div>
+        <div class="col-md-2"></div>
+
+    </div>
+</div>

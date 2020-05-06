@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "CreateSanPham";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@model ChuoiCuaHangTraSua.Models.Model.SanPhamModel
+<div class="create-product">
+    <div class="cp-title">
+        <span>THÊM SÁCH MỚI</span>
+
+        
+    </div>
+</div>
+@using (Html.BeginForm("CreateSanPhamChinh","SanPhamAdmin",FormMethod.Post, new { enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="main-createproduct row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9 mcp-content">
+                <div class="form-group row ">
+                    @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9 ">
+                        @Html.TextBoxFor(model => model.Ten,new { @class = "form-control mcp-content" } )
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.MaLoai, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.MaLoai, Model.SelectMaLoai, "--------Chọn loại sản phẩm----------", htmlAttributes: new { @class = "form-control" })
+
+                        @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Anh, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control" }, @id = "picture", @name = "picture", @style = "display:none;" })
+                        <input type="file" name="fileUpload" accept="image/*" value="" id="fileUpload" style="display:none;" />
+                        <img id="pictureUpload" width="200" />
+                        <div class="row">
+                            <div class="col-xl-3">
+                                <input type="button" name="name" value="Chọn ảnh" id="btnUpload" class="btn btn-success" /> 
+                            </div>
+                            <div class="col-xl-9"></div>
+                        </div>
+                        
+
+                        @Html.ValidationMessageFor(model => model.Anh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.GiaBan, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextBoxFor(model => model.GiaBan,new { @class = "form-control"  })
+                        @Html.ValidationMessageFor(model => model.GiaBan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.MoTa, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" },@rows ="4", @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group mcp-bottom">
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <input type="submit" value="Thêm mới" class="btn btn-primary col-md-2" />
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div>
+}
+@section upload
+{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+                    $.ajax(
+                    {
+                            type: 'POST',
+                            url: '/SanPhamAdmin/ProcessUpload',
+                            contentType: false,
+                            processData: false,
+                            data: formData,
+                            success: function (urlImage) {
+                                $('#pictureUpload').attr('src', '/Content/images/' + urlImage)
+                                    
+                                $('#picture').val(urlImage);
+                            },
+                            error: function (err) {
+                                alert('Có lỗi khi upload:' + err.statusText); 
+                            }
+
+                    })
+                }
+            });
+        });
+    </script>
+}
+

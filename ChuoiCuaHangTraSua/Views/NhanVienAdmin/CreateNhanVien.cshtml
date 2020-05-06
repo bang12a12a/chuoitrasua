@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "CreateNhanVien";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@model ChuoiCuaHangTraSua.Models.Model.NhanVienModel
+<div class="create-product">
+    <div class="cp-title">
+        <span>THÊM NHÂN VIÊN MỚI</span>
+
+
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="main-createproduct row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9 mcp-content">
+                <div class="form-group row ">
+                    @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9 ">
+                        @Html.TextBoxFor(model => model.HoTen, new { @class = "form-control mcp-content" })
+                        @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.MaChiNhanh, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.MaChiNhanh, Model.SelectChiNhanh, "--------Chọn chi nhánh----------")
+
+                        @Html.ValidationMessageFor(model => model.MaChiNhanh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.MaChucVu, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.MaChucVu, Model.SelectChiNhanh, "--------Chọn chức vụ----------")
+
+                        @Html.ValidationMessageFor(model => model.MaChucVu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    @Html.LabelFor(model => model.TenDangNhap, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9 ">
+                        @Html.TextBoxFor(model => model.TenDangNhap, new { @class = "form-control mcp-content" })
+                        @Html.ValidationMessageFor(model => model.TenDangNhap, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                
+
+                <div class="form-group mcp-bottom">
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <input type="submit" value="Thêm mới" class="btn btn-primary col-md-2" />
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div>
+}
+

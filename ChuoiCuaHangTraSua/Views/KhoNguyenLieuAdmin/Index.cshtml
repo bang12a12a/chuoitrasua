@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@model List<ChuoiCuaHangTraSua.Models.Model.KhoNguyenLieu>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header row">
+                        <strong class="card-title col-xl-10 col-md-10">DANH SÁCH KHO NGUYÊN LIỆU</strong>
+                        
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="5%">STT</th>
+                                    <th width="15%">Tên nguyên liệu</th>
+                                    <th width="15%">Tên đơn vị</th>
+                                    <th width="15%">Số lượng</th>
+                                  
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="5%" class="table-center">@item.STT</td>
+                                        <td width="15%" class="admin-spc-tensp"><span>@item.TenNguyenLieu</span> </td>
+                                        <td width="15%" ><span>@item.TenDonVi</span> </td>
+                                        <td width="15%" class="table-center"><span>@item.SoLuong</span> </td>
+                                       
+
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div><!-- .animated -->
+</div>
+
+

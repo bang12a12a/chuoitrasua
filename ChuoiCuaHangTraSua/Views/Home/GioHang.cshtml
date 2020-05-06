@@ -1,0 +1,13 @@
+﻿
+@model List<ChuoiCuaHangTraSua.Models.EF.GioHang>
+@if (Model != null)
+{
+    <div class="shopping-card">
+        <a href="/Cart/Index"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+}
+else{ 
+    <div class="shopping-card">
+        <a href="/SanPham/Index"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+}

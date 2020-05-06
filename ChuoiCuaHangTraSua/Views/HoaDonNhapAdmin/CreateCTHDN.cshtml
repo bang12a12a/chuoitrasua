@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "CreateCTHDN";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@model ChuoiCuaHangTraSua.Models.Model.CTHDNhapModel
+
+
+<div class="row">
+    <div class="col-xl-1"></div>
+    <div class="col-xl-10">
+        <div class="">
+            <span class="table-center">Nhập nguyên liệu</span>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="main-createproduct row">
+
+                    <div class="col-md-12 mcp-content">
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.MaNguyenLieu, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.MaNguyenLieu, Model.SelectNguyenLieu, "--------Chọn nguyên liệu----------", new { @class = "form-control " })
+
+                                @Html.ValidationMessageFor(model => model.MaNguyenLieu, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            @Html.LabelFor(model => model.MaDonViTinh, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownListFor(model => model.MaDonViTinh, Model.SelectDonViTinh, "--------Chọn đơn vị tính----------", new { @class = "form-control " })
+
+                                @Html.ValidationMessageFor(model => model.MaDonViTinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            @Html.LabelFor(model => model.GiaNhap, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9 ">
+                                @Html.TextBoxFor(model => model.GiaNhap, new { @class = "form-control mcp-content" })
+                                @Html.ValidationMessageFor(model => model.GiaNhap, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            @Html.LabelFor(model => model.SoLuong, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9 ">
+                                @Html.TextBoxFor(model => model.SoLuong, new { @class = "form-control mcp-content" })
+                                @Html.ValidationMessageFor(model => model.SoLuong, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            @Html.LabelFor(model => model.ChietKhau, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9 ">
+                                @Html.TextBoxFor(model => model.ChietKhau, new { @class = "form-control mcp-content" })
+                                @Html.ValidationMessageFor(model => model.ChietKhau, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group mcp-bottom">
+                            <div class="row">
+                                <div class="col-md-5"></div>
+                                <input type="submit" value="Hoàn thành" class="btn btn-primary col-md-2" />
+                                <div class="col-md-5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        }
+
+    </div>
+    <div class="col-xl-1"></div>
+</div>
+
+

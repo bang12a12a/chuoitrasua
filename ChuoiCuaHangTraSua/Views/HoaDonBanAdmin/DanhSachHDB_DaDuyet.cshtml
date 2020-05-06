@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "DanhSachHDB_DaDuyet";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@model List<ChuoiCuaHangTraSua.Models.Model.HoaDonBanModel>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">DANH SÁCH HÓA ĐƠN BÁN CHƯA PHÊ DUYỆT</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="5%">STT</th>
+                                    <th width="10%">Ngày bán</th>
+                                    <th width="15%">Tên khách</th>
+                                    <th width="20%">Địa chỉ</th>
+                                    <th width="8%">Điện thoại</th>
+                                    <th width="11%">Khuyến mãi</th>
+                                    <th width="6%">Tổng tiền</th>
+                                    <th width="6%">Duyệt</th>
+                                    <th width="6%">Thanh Toán</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="5%" class="table-center">@item.STT</td>
+                                        <td width="10%" class="admin-spc-tensp"><span>@String.Format("{0:d/M/yyyy}", @item.NgayBan)</span> </td>
+                                        <td width="15%" class="table-center">@item.HoTen</td>
+                                        <td width="20%">@item.DiaChi</td>
+                                        <td width="9%" class="table-center">@item.SDT</td>
+
+                                        <td width="11%" class="table-center">
+                                            @if (item.KhuyenMai == null)
+                                            {
+                                                <span>0</span>
+                                            }
+                                            else
+                                            {
+                                                @item.KhuyenMai
+                                            }
+                                            <span>%</span>
+                                        </td>
+                                        <td width="6%" class="table-center">@String.Format("{0:0,0}", @item.TongTien)đ</td>
+                                        <td width="6%" class="table-center">
+                                                <span class="btn-primary">Đã duyệt</span>
+                                        </td>
+                                        <td width="6%" class="table-center">
+                                            @if (item.DaThanhToan == 0)
+                                            {
+                                                <span class="btn-danger">chưa tt</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="btn-success">đã tt</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div><!-- .animated -->
+</div>
+
+

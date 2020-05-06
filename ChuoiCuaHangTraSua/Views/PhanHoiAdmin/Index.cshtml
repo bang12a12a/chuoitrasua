@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+@model List<ChuoiCuaHangTraSua.Models.Model.PhanHoiModel>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">DANH SÁCH PHẢN HỒI TỪ KHÁCH HÀNG</strong>
+                    </div>
+                    <div class="card-body">
+                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th width="5%">STT</th>
+                                    <th width="50%">Nội Dung</th>
+                                    <th width="25%">User</th>
+                                    <th width="10%">Chức Năng</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td width="5%" class="table-center">@item.STT</td>
+                                    <td width="15%" class="admin-spc-tensp"><span>@item.Content</span> </td>
+                                    <td width="15%" class="table-center">@item.UserName</td>
+
+
+                                    <td width="11%" class="chucnang table-center">
+                                        @if (item.DaXem == 0)
+                                        {
+                                            <a href="/PhanHoiAdmin/SuaPhanHoi?maphanhoi=@item.Id" class="btn btn-danger">Chưa Xem</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="" class="btn btn-primary">Đã Xem</a>
+                                        }
+
+
+                                    </td>
+                                </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div><!-- .animated -->
+</div>
+
+
+
+
+

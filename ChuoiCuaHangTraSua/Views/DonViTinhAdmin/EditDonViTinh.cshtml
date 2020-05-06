@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "EditDonViTinh";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@model ChuoiCuaHangTraSua.Models.Model.DonViTinhModel
+<div class="row">
+    <div class="col-xl-1 col-md-1"></div>
+    <div class="col-xl-10 col-md-10">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="create-product">
+                    <div class="cp-title">
+                        <span>SỬA THÔNG TIN NGUYÊN LIỆU</span>
+
+
+                    </div>
+                </div>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control", @style = "display:none;" } })
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.TenDonViTinh, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.TenDonViTinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenDonViTinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group mcp-bottom">
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <input type="submit" value="Lưu" class="btn btn-primary col-md-2" />
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-xl-1 col-md-1"></div>
+</div>
+

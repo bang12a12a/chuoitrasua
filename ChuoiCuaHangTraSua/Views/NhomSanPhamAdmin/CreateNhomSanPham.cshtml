@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "CreateNhomSanPham";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+@model ChuoiCuaHangTraSua.Models.Model.NhomSanPhamModel
+<div class="create-product">
+    <div class="cp-title">
+        <span>THÊM NHÓM SẢN PHẨM MỚI</span>
+
+
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="main-createproduct row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9 mcp-content">
+                <div class="form-group row ">
+                    @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9 ">
+                        @Html.TextBoxFor(model => model.Ten, new { @class = "form-control mcp-content" })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.SPChinhPhu, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.SPChinhPhu, Model.SelectSPChinhPhu, "--------Chọn loại sản phẩm----------")
+
+                        @Html.ValidationMessageFor(model => model.SPChinhPhu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group mcp-bottom">
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <input type="submit" value="Thêm mới" class="btn btn-primary col-md-2" />
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="main-createproduct row">
+            <div class="col-md-1"></div>
+            <div class="col-md-9 mcp-content">
+                <div class="form-group row ">
+                    @Html.LabelFor(model => model.Ten, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9 ">
+                        @Html.TextBoxFor(model => model.Ten, new { @class = "form-control mcp-content" })
+                        @Html.ValidationMessageFor(model => model.Ten, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.SPChinhPhu, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.SPChinhPhu, Model.SelectSPChinhPhu, "--------Chọn loại sản phẩm----------")
+
+                        @Html.ValidationMessageFor(model => model.SPChinhPhu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group mcp-bottom">
+                    <div class="row">
+                        <div class="col-md-5"></div>
+                        <input type="submit" value="Thêm mới" class="btn btn-primary col-md-2" />
+                        <div class="col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+    </div>
+}
+            </div>
+
+        </div>
+    </div>
+}
+
